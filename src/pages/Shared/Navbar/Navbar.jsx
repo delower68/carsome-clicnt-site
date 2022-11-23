@@ -28,32 +28,40 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to='/'>Home</Link>
+                <Link to="/">Home</Link>
               </li>
-              <li tabIndex={0}>
-                <Link to='/dashboard' className="justify-between">
+              <li>
+                <Link to="/dashboard" className="justify-between">
                   Dashboard
                 </Link>
               </li>
               <li>
-              <Link to='/blog'>Blog</Link>
+                <Link to="/blog">Blog</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl"><span className="text-3xl">Car</span><h2>some</h2></Link>
+          <Link className="btn btn-ghost normal-case text-xl">
+            {/* <span className="text-3xl font-serif">Car</span>
+            <h2>some</h2> */}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdxw6kRlSZKVx-ut_MFVLu3KErAhxezvPISg&usqp=CAU" className="w-20 h-20 rounded-xl" alt="" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li>
-              <Link to='/' >Home</Link>
-            </li>
-            <li tabIndex={0}>
-              <Link to='/dashboard'>
-                Dashboard
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to='/blog'>Blog</Link>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </div>
