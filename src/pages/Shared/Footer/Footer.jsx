@@ -8,7 +8,8 @@ const Footer = () => {
         <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/3">
           <Link className="btn btn-ghost normal-case text-xl">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdxw6kRlSZKVx-ut_MFVLu3KErAhxezvPISg&usqp=CAU" className="w-24 h-20 rounded-xl" alt="" />
+            <span className="text-3xl font-serif">Car</span>
+            <h2>some</h2>
           </Link>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
@@ -128,7 +129,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="py-6 text-sm text-center dark:text-gray-400">
-          © 1968 Company Co. All rights reserved.
+          © 2022 Company Co. All rights reserved.
         </div>
       </footer>
     </div>

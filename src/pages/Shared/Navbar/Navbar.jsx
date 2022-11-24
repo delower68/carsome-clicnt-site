@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
+
 
 const Navbar = () => {
+  const {user, logOut} =  useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -44,8 +53,6 @@ const Navbar = () => {
             </ul>
           </div>
           <Link className="btn btn-ghost normal-case text-xl">
-            {/* <span className="text-3xl font-serif">Car</span>
-            <h2>some</h2> */}
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdxw6kRlSZKVx-ut_MFVLu3KErAhxezvPISg&usqp=CAU" className="w-20 h-20 rounded-xl" alt="" />
           </Link>
         </div>
@@ -66,9 +73,22 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link className="btn mr-1">Log out</Link>
-          <Link className="btn mr-1">Log in</Link>
-          <Link className="btn ">Sign up</Link>
+
+        {
+          user?.uid? 
+          <div>
+           <Link onClick={handleLogOut} to='/login' className="btn   rounded dark:bg-gray-800 dark:text-gray-50">Log out</Link>
+          </div>
+          :
+          <>
+          <Link to='/login'className="btn mr-2  rounded dark:bg-gray-800 dark:text-gray-50">Log in</Link>
+          <Link to='/signup' className="btn   rounded dark:bg-gray-800 dark:text-gray-50">Sign up</Link>
+          </>
+        }
+
+
+         
+
         </div>
       </div>
     </div>
