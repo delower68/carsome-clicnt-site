@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Categories from "../Categories/Categories";
 
 const Home = () => {
   return (
@@ -38,6 +39,7 @@ const Home = () => {
           className="w-4/6 mx-auto   mb-12 -mt-20  lg:-mt-40 dark:bg-gray-500"
         />
       </section>
+      <Categories/>
     </div>
   );
 };
