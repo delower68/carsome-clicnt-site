@@ -45,7 +45,7 @@ const BookingModal = ({ carinfo, refetch }) => {
                 toast.success("Booking confirmed");
                 form.reset();
                 refetch();
-                navigate('/')
+                navigate('/dashboard')
             }
             else{
                 toast.error(data.message)
@@ -54,7 +54,7 @@ const BookingModal = ({ carinfo, refetch }) => {
         })
 
 
-        
+
 
 
 
