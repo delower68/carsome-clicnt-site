@@ -44,7 +44,11 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               </li>
-              
+              <li>
+                <Link to="/categories" className="justify-between">
+                  Categories
+                </Link>
+              </li>
               <li>
                 <Link to="/allCars" className="justify-between">
                   All cars
@@ -64,19 +68,19 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
+            <li className="mr-2">
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="mr-2">
               <Link to="/dashboard">Dashboard</Link>
             </li>
             
-            <li>
+            <li className="mr-2">
                 <Link to="/allCars" className="justify-between">
                   All cars
                 </Link>
               </li>
-            <li>
+            <li className="mr-2">
               <Link to="/blog">Blog</Link>
             </li>
             <li>

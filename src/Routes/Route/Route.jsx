@@ -7,6 +7,7 @@ import ElectricCarCategory from "../../pages/Home/ElectricCarCategory/ElectricCa
 import Home from "../../pages/Home/Home/Home";
 import LuxuryCarCategory from "../../pages/Home/LuxuryCarCategory/LuxuryCarCategory";
 import MicrobusCategorory from "../../pages/Home/MicrobusCategorory/MicrobusCategorory";
+import Blogs from "../../pages/Shared/Blogs/Blogs";
 import Login from "../../pages/Shared/Login/Login";
 import SignUp from "../../pages/Shared/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/blog",
+        element: <Blogs />,
       },
     ],
   },
