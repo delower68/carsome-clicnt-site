@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import ManageBuyer from "../../Dashboard/ManageBuyer/ManageBuyer";
 import MyBookings from "../../Dashboard/MyBookings/MyBookings";
 import ErrorPage from "../../ErrorPage/ErrorPage";
 import DashBoardLayout from "../../Layouts/DashBoardLayout";
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <MyBookings/>
+      },
+      {
+        path: '/dashboard/manageBuyer',
+        element: <ManageBuyer/>
       }
     ]
 
