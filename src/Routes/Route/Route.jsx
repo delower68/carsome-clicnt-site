@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import MyBookings from "../../Dashboard/MyBookings/MyBookings";
 import ErrorPage from "../../ErrorPage/ErrorPage";
+import DashBoardLayout from "../../Layouts/DashBoardLayout";
 import Main from "../../Layouts/Main";
 import AllCars from "../../pages/AllCars/AllCars";
 import Categories from "../../pages/Home/Categories/Categories";
@@ -52,4 +54,16 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashboard',
+    element:<PrivateRoute> <DashBoardLayout/></PrivateRoute>,
+    errorElement: <ErrorPage/> ,
+    children: [
+      {
+        path: '/dashboard',
+        element: <MyBookings/>
+      }
+    ]
+
+  }
 ]);
