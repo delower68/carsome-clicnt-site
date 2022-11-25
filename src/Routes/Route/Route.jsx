@@ -1,29 +1,48 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../../ErrorPage/ErrorPage";
 import Main from "../../Layouts/Main";
+import AllCars from "../../pages/AllCars/AllCars";
+import Categories from "../../pages/Home/Categories/Categories";
 import Home from "../../pages/Home/Home/Home";
+import LuxuryCarCategory from "../../pages/Home/LuxuryCarCategory/LuxuryCarCategory";
+import MicrobusCategorory from "../../pages/Home/MicrobusCategorory/MicrobusCategorory";
 import Login from "../../pages/Shared/Login/Login";
 import SignUp from "../../pages/Shared/SignUp/SignUp";
 
-export  const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Main/>,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: '/',
-                element: <Home/>
-            },
-            {
-                path: '/login',
-                element: <Login/>
-            },
-            {
-                path: '/signup',
-                element: <SignUp/>
-            }
-        ]
-        
-    }
-])
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/allCars",
+        element: <AllCars />,
+      },
+      {
+        path: "/allMicrobus",
+        element: <MicrobusCategorory />,
+      },
+      {
+        path: "/luxuryCar",
+        element: <LuxuryCarCategory />,
+      },
+      {
+        path: "/electricCar",
+        element: <LuxuryCarCategory />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+    ],
+  },
+]);

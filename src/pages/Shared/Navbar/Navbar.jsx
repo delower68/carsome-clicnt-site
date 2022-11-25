@@ -44,6 +44,12 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               </li>
+              
+              <li>
+                <Link to="/allCars" className="justify-between">
+                  All cars
+                </Link>
+              </li>
               <li>
                 <Link to="/blog">Blog</Link>
               </li>
@@ -64,6 +70,12 @@ const Navbar = () => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            
+            <li>
+                <Link to="/allCars" className="justify-between">
+                  All cars
+                </Link>
+              </li>
             <li>
               <Link to="/blog">Blog</Link>
             </li>
