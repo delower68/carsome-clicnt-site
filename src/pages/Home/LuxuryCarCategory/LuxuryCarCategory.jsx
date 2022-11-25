@@ -7,7 +7,7 @@ import ShowLuxuryCar from './ShowLuxuryCar';
 const LuxuryCarCategory = () => {
   const [carInfo, setCarinfo]= useState(null);
 
-    const {data: luxuryCar=[], refetch, isLoading}= useQuery({
+    const {data: luxuryCar=[],refetch,  isLoading}= useQuery({
         queryKey: ['luxuryCar'],
         queryFn: async()=>{
             const res = await fetch('http://localhost:8000/luxuryCar')
@@ -34,6 +34,7 @@ const LuxuryCarCategory = () => {
         {   carInfo &&
             <BookingModal
                 carinfo={carInfo}
+                refetch={refetch}
             />
             }
         </div>

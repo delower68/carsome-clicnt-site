@@ -3,11 +3,13 @@ import ErrorPage from "../../ErrorPage/ErrorPage";
 import Main from "../../Layouts/Main";
 import AllCars from "../../pages/AllCars/AllCars";
 import Categories from "../../pages/Home/Categories/Categories";
+import ElectricCarCategory from "../../pages/Home/ElectricCarCategory/ElectricCarCategory";
 import Home from "../../pages/Home/Home/Home";
 import LuxuryCarCategory from "../../pages/Home/LuxuryCarCategory/LuxuryCarCategory";
 import MicrobusCategorory from "../../pages/Home/MicrobusCategorory/MicrobusCategorory";
 import Login from "../../pages/Shared/Login/Login";
 import SignUp from "../../pages/Shared/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -21,19 +23,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allCars",
-        element: <AllCars />,
+        element: <PrivateRoute><AllCars /></PrivateRoute>,
       },
       {
         path: "/allMicrobus",
-        element: <MicrobusCategorory />,
+        element: <PrivateRoute><MicrobusCategorory /></PrivateRoute>,
       },
       {
         path: "/luxuryCar",
-        element: <LuxuryCarCategory />,
+        element: <PrivateRoute><LuxuryCarCategory /></PrivateRoute>,
       },
       {
         path: "/electricCar",
-        element: <LuxuryCarCategory />,
+        element: <PrivateRoute><ElectricCarCategory /></PrivateRoute>,
       },
       {
         path: "/login",

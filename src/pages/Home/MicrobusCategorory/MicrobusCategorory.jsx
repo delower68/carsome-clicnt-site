@@ -7,7 +7,7 @@ import ShowMicrobus from './ShowMicrobus';
 const MicrobusCategorory = () => {
     const [carInfo, setCarinfo]= useState(null);
 
-    const {data: microbus=[], refetch, isLoading}= useQuery({
+    const {data: microbus=[],  isLoading}= useQuery({
         queryKey: ['microbus'],
         queryFn: async()=>{
             const res = await fetch('http://localhost:8000/microbus')

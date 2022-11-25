@@ -47,6 +47,7 @@ const AllCars = () => {
        { carInfo &&
         <BookingModal
           carinfo={carInfo}
+          refetch={refetch}
         />
         }
     </div>

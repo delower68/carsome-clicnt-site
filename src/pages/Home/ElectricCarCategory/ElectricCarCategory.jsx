@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import BookingModal from '../../BookingModal/BookingModal';
+
 import Spinner from '../../Spinner/Spinner';
 import ShowElectricCar from './ShowElectricCar';
 
@@ -32,6 +33,7 @@ const ElectricCarCategory = () => {
         { carInfo && 
             <BookingModal 
                 carinfo={carInfo}
+                refetch={refetch}
             />
             }
         </div>
