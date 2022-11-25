@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShowCars = ({ car }) => {
+const ShowCars = ({ car,setCarinfo }) => {
   const {img_url, car_name, condition, mobile, location, seller_name, categoryName, resale_price,original_price, purchase_year, used_year, details  } = car;
 
     const description = details.slice(0,200);
@@ -43,7 +43,13 @@ const ShowCars = ({ car }) => {
 		</div>
           <div className="card-actions justify-end">
           
-            <button className="btn   rounded dark:bg-gray-800 dark:text-gray-50">Book Now</button>
+          <label 
+          htmlFor="booking-modal" 
+          className="btn   rounded dark:bg-gray-800 dark:text-gray-50"
+          onClick={()=>setCarinfo(car)}
+          >
+        Book Now
+      </label>
           </div>
         </div>
       </div>

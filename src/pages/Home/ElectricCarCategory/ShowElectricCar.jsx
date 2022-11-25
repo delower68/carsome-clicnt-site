@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShowElectricCar = ({ electric }) => {
+const ShowElectricCar = ({ electric, setCarinfo }) => {
   const {
     img_url,
     car_name,
@@ -58,9 +58,13 @@ const ShowElectricCar = ({ electric }) => {
                 </div>
               </div>
               <div className="card-actions justify-end">
-                <button className="btn   rounded dark:bg-gray-800 dark:text-gray-50">
+                <label
+                  htmlFor="booking-modal"
+                  className="btn   rounded dark:bg-gray-800 dark:text-gray-50"
+                  onClick={()=> setCarinfo(electric)}
+                >
                   Book Now
-                </button>
+                </label>
               </div>
             </div>
           </div>

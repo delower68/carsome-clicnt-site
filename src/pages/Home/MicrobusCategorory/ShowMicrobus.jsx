@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShowMicrobus = ({ bus }) => {
+const ShowMicrobus = ({ bus, setCarinfo }) => {
   const {
     img_url,
     car_name,
@@ -57,9 +57,14 @@ const ShowMicrobus = ({ bus }) => {
               </div>
             </div>
             <div className="card-actions justify-end">
-              <button className="btn   rounded dark:bg-gray-800 dark:text-gray-50">
-                Book Now
-              </button>
+
+              <label 
+              htmlFor="booking-modal" 
+              className="btn   rounded dark:bg-gray-800 dark:text-gray-50"
+              onClick={()=> setCarinfo(bus)}
+              >
+        Book Now
+      </label>
             </div>
           </div>
         </div>

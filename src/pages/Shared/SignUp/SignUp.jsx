@@ -125,8 +125,8 @@ const SignUp = () => {
                   {...register('type', {required: "Type is required"})}
                   className="select select-bordered w-full   border rounded-md border-gray-300  bg-gray-200 text-gray-900"
                 >
-                  <option value="seller">Seller</option>
-                  <option value="user">User</option>
+                  <option value="Buyer">Buyer</option>
+                  <option value="Seller">Seller</option>
                 </select>
               </div>
               <div>
