@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import ManageBuyer from "../../Dashboard/ManageBuyer/ManageBuyer";
 import MyBookings from "../../Dashboard/MyBookings/MyBookings";
+import MyProducts from "../../Dashboard/MyProducts/MyProducts";
 import ErrorPage from "../../ErrorPage/ErrorPage";
 import DashBoardLayout from "../../Layouts/DashBoardLayout";
 import Main from "../../Layouts/Main";
@@ -65,8 +67,16 @@ export const router = createBrowserRouter([
         element: <MyBookings/>
       },
       {
-        path: '/dashboard/manageBuyer',
+        path: '/dashboard/manageBuyerSeller',
         element: <ManageBuyer/>
+      },
+      {
+        path: '/dashboard/myProducts',
+        element: <MyProducts/>
+      },
+      {
+        path: '/dashboard/addProduct',
+        element: <AddProduct/>
       }
     ]
 
