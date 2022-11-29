@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const ErrorPage = () => {
+  const {logOut}= useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate('/login')
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <section>
-        <div class="bg-black text-white">
-          <div class="flex h-screen">
-            <div class="m-auto text-center">
+        <div className="bg-black text-white">
+          <div className="flex h-screen">
+            <div className="m-auto text-center">
               <div>
                 <svg
                   width="631"
@@ -267,15 +280,13 @@ const ErrorPage = () => {
                   </defs>
                 </svg>
               </div>
-              <p class="text-sm md:text-base text-yellow-300 p-2 mb-4">
+              <p className="text-sm md:text-base text-yellow-300 p-2 mb-4">
                 The stuff you were looking for doesn't exist
               </p>
-              <a
-                href="/"
-                class="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent"
-              >
-                Retry
-              </a>
+
+              <h2 className="bg-transparent  text-yellow-300  rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">Please <button onClick={handleLogOut}
+              className="bg-transparent  text-white  rounded shadow hover:shadow-lg border-yellow-300 hover:border-transparent"
+              >Sign out</button> and login back</h2>
             </div>
           </div>
         </div>

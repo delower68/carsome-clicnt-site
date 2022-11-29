@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ConfirmationModale = ({title, message, closeModal, successAction, modalData}) => {
+const ConfirmationModale = ({title, message, closeModal,successButtonName, successAction, modalData}) => {
 
 
   return (
@@ -17,7 +17,7 @@ const ConfirmationModale = ({title, message, closeModal, successAction, modalDat
             {message}
           </p>
           <div className="modal-action">
-            <label 
+            {/* <label 
             onClick={()=> successAction(modalData)} 
             htmlFor="confirmation-modal" 
             className="btn btn-error"
@@ -25,7 +25,11 @@ const ConfirmationModale = ({title, message, closeModal, successAction, modalDat
             
             >
               Delete
-            </label>
+            </label> */}
+            <label 
+                        onClick={() => successAction(modalData)} 
+                        htmlFor="confirmation-modal" 
+                        className="btn btn-primary">{successButtonName}</label>
             <label onClick={closeModal} htmlFor="confirmation-modal" className="btn">
               cancel
             </label>

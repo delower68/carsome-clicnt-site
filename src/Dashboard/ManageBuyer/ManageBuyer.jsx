@@ -36,9 +36,9 @@ const ManageBuyer = () => {
   };
 
 
-  const handleManageBuyerSeller = (_id)=>{
-    fetch(`http://localhost:8000/users/${_id}`, {
-        method:"DELETE"
+  const handleManageBuyerSeller = (user)=>{
+    fetch(`http://localhost:8000/users/${user._id}`, {
+        method: 'DELETE'
     })
     .then(res => res.json())
     .then(data => {
@@ -107,7 +107,7 @@ const ManageBuyer = () => {
         </div>
         {deleteProduct && (
         <ConfirmationModale
-          
+        successButtonName='DELETE'
           successAction={handleManageBuyerSeller}
           modalData={deleteProduct}
           closeModal={closeModal}

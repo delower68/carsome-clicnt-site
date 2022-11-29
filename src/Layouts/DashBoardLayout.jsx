@@ -23,7 +23,7 @@ const DashBoardLayout = () => {
             className="drawer-overlay rounded-xl"
           ></label>
           <ul className="menu rounded-xl  p-4  w-80 mt-8 text-base-content">
-            {user?.type === "Buyer" && (
+            {user?.type !== "Buyer" && (
               <li>
                 <Link to="/dashboard" className="mb-2">
                   My Bookings
@@ -49,7 +49,7 @@ const DashBoardLayout = () => {
             </li>
             </div>}
 
-            {user?.type !== "admin" || (
+            {user?.type !== "admin" && (
               <li>
                 <Link to="/dashboard/manageBuyerSeller">
                   Manage Buyer & Seller

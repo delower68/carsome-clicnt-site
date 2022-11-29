@@ -24,22 +24,22 @@ const MyBookings = () => {
     setDeleteProduct(null);
   };
 
-  const handleDelete = product =>{
-    fetch(`http://localhost:8000/bookings/${product._id}`,{
-        method: 'DELETE',
-        headers: {
+  // const handleDelete = product =>{
+  //   fetch(`http://localhost:8000/bookings/${product._id}`,{
+  //       method: 'DELETE',
+  //       headers: {
 
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.deletedCount > 0){
-            refetch()
-            toast.success(`Your ${product?.car_name} order deleted successfully`)
-        }
-    })
+  //       }
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //       if(data.deletedCount > 0){
+  //           refetch()
+  //           toast.success(`Your ${product?.car_name} order deleted successfully`)
+  //       }
+  //   })
 
-  }
+  // }
 
   if (isLoading) {
     return <Spinner />;
@@ -83,13 +83,16 @@ const MyBookings = () => {
                     )}
                   </td>
                   <td>
-                    <label
+                    {
+                      booking?.resale_price && !booking.paid && 
+                      <label
                       onClick={() => setDeleteProduct(booking)}
                       htmlFor="confirmation-modal"
                       className="bg-red-400 btn  btn-sm"
                     >
                       Delete
                     </label>
+                    }
                   </td>
                 </tr>
               ))}
@@ -98,8 +101,8 @@ const MyBookings = () => {
       </div>
       {deleteProduct && (
         <ConfirmationModale
-          
-          successAction={handleDelete}
+        successButtonName='DELETE'
+          // successAction={handleDelete}
           modalData={deleteProduct}
           closeModal={closeModal}
           title={`Are you sure you wanna delete? `}

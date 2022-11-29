@@ -3,6 +3,7 @@ import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import ManageBuyer from "../../Dashboard/ManageBuyer/ManageBuyer";
 import MyBookings from "../../Dashboard/MyBookings/MyBookings";
 import MyProducts from "../../Dashboard/MyProducts/MyProducts";
+import Payment from "../../Dashboard/Payment/Payment";
 import ErrorPage from "../../ErrorPage/ErrorPage";
 import DashBoardLayout from "../../Layouts/DashBoardLayout";
 import Main from "../../Layouts/Main";
@@ -77,7 +78,12 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/addProduct',
         element: <AddProduct/>
-      }
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment/>,
+        loader: ({params})=> fetch(`http://localhost:8000/bookings/${params.id}`)
+      },
     ]
 
   }
