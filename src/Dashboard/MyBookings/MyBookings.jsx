@@ -24,22 +24,22 @@ const MyBookings = () => {
     setDeleteProduct(null);
   };
 
-  // const handleDelete = product =>{
-  //   fetch(`http://localhost:8000/bookings/${product._id}`,{
-  //       method: 'DELETE',
-  //       headers: {
+  const handleDelete = product =>{
+    fetch(`http://localhost:8000/bookings/${product._id}`,{
+        method: 'DELETE',
+        headers: {
 
-  //       }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //       if(data.deletedCount > 0){
-  //           refetch()
-  //           toast.success(`Your ${product?.car_name} order deleted successfully`)
-  //       }
-  //   })
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+            refetch()
+            toast.success(`Your ${product?.car_name} order deleted successfully`)
+        }
+    })
 
-  // }
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -102,7 +102,7 @@ const MyBookings = () => {
       {deleteProduct && (
         <ConfirmationModale
         successButtonName='DELETE'
-          // successAction={handleDelete}
+          successAction={handleDelete}
           modalData={deleteProduct}
           closeModal={closeModal}
           title={`Are you sure you wanna delete? `}
