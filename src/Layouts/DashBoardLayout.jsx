@@ -1,10 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import useAdmin from "../hooks/useAdmin";
 import Navbar from "../pages/Shared/Navbar/Navbar";
+import Spinner from "../pages/Spinner/Spinner";
 
 const DashBoardLayout = () => {
-  const { user } = useContext(AuthContext);
+  
+  const url = "http://localhost:8000/users";
+  const { data: users = [],refetch, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data.data);
+      return data;
+    },
+  });
+  
+  if(isLoading){
+    return <Spinner/>
+  }
+
+
   return (
     <div>
       <Navbar />
@@ -23,7 +42,7 @@ const DashBoardLayout = () => {
             className="drawer-overlay rounded-xl"
           ></label>
           <ul className="menu rounded-xl  p-4  w-80 mt-8 text-base-content">
-            {user?.type !== "Buyer" && (
+            {users?.type === "Buyer" && (
               <li>
                 <Link to="/dashboard" className="mb-2">
                   My Bookings
@@ -31,7 +50,7 @@ const DashBoardLayout = () => {
               </li>
             )}
 
-            { user?.type === 'seller' ||
+            { users?.type === 'Seller' &&
               <div>
             <li>
               <Link className="mb-2">My Buyers</Link>
@@ -49,7 +68,7 @@ const DashBoardLayout = () => {
             </li>
             </div>}
 
-            {user?.type !== "admin" && (
+            { users?.type === 'admin' || (
               <li>
                 <Link to="/dashboard/manageBuyerSeller">
                   Manage Buyer & Seller

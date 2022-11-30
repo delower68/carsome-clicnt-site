@@ -15,6 +15,7 @@ const ShowElectricCar = ({ electric, setCarinfo }) => {
     used_year,
     details,
   } = electric;
+  console.log(electric);
 
   const description = details.slice(0, 200);
   return (

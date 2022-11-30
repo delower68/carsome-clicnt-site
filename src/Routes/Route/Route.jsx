@@ -16,6 +16,7 @@ import MicrobusCategorory from "../../pages/Home/MicrobusCategorory/MicrobusCate
 import Blogs from "../../pages/Shared/Blogs/Blogs";
 import Login from "../../pages/Shared/Login/Login";
 import SignUp from "../../pages/Shared/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/manageBuyerSeller',
-        element: <ManageBuyer/>
+        element:<ManageBuyer/>
       },
       {
         path: '/dashboard/myProducts',

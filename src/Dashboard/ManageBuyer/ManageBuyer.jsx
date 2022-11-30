@@ -19,7 +19,7 @@ const ManageBuyer = () => {
 
   const handleMakeAdmin = (id) => {
     fetch(`http://localhost:8000/users/admin/${id}`, {
-      method: "PUT",
+      method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
