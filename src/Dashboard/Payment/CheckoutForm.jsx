@@ -11,10 +11,9 @@ const CheckoutForm = ({ booking }) => {
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
 
-
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:8000/create-payment-intent", {
+    fetch("https://car-some-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,10 +24,6 @@ const CheckoutForm = ({ booking }) => {
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [resale_price]);
-
-
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,7 +54,6 @@ const CheckoutForm = ({ booking }) => {
     setSuccess("");
     setProcessing(true);
 
-
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -70,7 +64,6 @@ const CheckoutForm = ({ booking }) => {
           },
         },
       });
-
 
     if (confirmError) {
       setCardError(confirmError.message);
@@ -87,7 +80,7 @@ const CheckoutForm = ({ booking }) => {
         bookingId: _id,
       };
 
-      fetch("http://localhost:8000/payments", {
+      fetch("https://car-some-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -142,12 +135,15 @@ const CheckoutForm = ({ booking }) => {
         </div>
       </form>
       <p className="text-red-400">{cardError}</p>
-      {
-        success && <div>
-            <p className="text-blue-500">{success}</p>
-            <p>Your transactionID: <span className="font-bold">{transactionId}</span></p>
+      {success && (
+        <div>
+          <p className="text-blue-500">{success}</p>
+          <p>
+            Your transactionID:{" "}
+            <span className="font-bold">{transactionId}</span>
+          </p>
         </div>
-      }
+      )}
     </div>
   );
 };

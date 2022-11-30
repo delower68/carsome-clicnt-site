@@ -7,9 +7,12 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 import Spinner from "../pages/Spinner/Spinner";
 
 const DashBoardLayout = () => {
-
-  const url = "http://localhost:8000/users";
-  const { data: users = [],refetch, isLoading } = useQuery({
+  const url = "https://car-some-server.vercel.app/users";
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(url);
@@ -18,11 +21,10 @@ const DashBoardLayout = () => {
       return data;
     },
   });
-  
-  if(isLoading){
-    return <Spinner/>
-  }
 
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -50,25 +52,26 @@ const DashBoardLayout = () => {
               </li>
             )}
 
-            { users?.type !== 'Seller' &&
+            {users?.type !== "Seller" && (
               <div>
-            <li>
-              <Link className="mb-2">My Buyers</Link>
-            </li>
-            <li>
-              <Link className="mb-2" to="/dashboard/myProducts">
-                My Products
-              </Link>
-            </li>
+                <li>
+                  <Link className="mb-2">My Buyers</Link>
+                </li>
+                <li>
+                  <Link className="mb-2" to="/dashboard/myProducts">
+                    My Products
+                  </Link>
+                </li>
 
-            <li>
-              <Link className="mb-2" to="/dashboard/addProduct">
-                Add a Product
-              </Link>
-            </li>
-            </div>}
+                <li>
+                  <Link className="mb-2" to="/dashboard/addProduct">
+                    Add a Product
+                  </Link>
+                </li>
+              </div>
+            )}
 
-            { users?.type === 'admin' || (
+            {users?.type === "admin" || (
               <li>
                 <Link to="/dashboard/manageBuyerSeller">
                   Manage Buyer & Seller

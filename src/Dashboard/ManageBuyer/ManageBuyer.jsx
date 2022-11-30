@@ -7,8 +7,12 @@ import ConfirmationModale from "../../pages/Shared/ConfirmationModale/Confirmati
 const ManageBuyer = () => {
   const [deleteProduct, setDeleteProduct] = useState(null);
 
-  const url = "http://localhost:8000/users";
-  const { data: users = [],refetch, isLoading } = useQuery({
+  const url = "https://car-some-server.vercel.app/users";
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(url);
@@ -18,15 +22,15 @@ const ManageBuyer = () => {
   });
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:8000/users/admin/${id}`, {
+    fetch(`https://car-some-server.vercel.app/users/admin/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.modifiedCount > 0){
-            toast.success("Make admin successfully")
-            refetch()
+        if (data.modifiedCount > 0) {
+          toast.success("Make admin successfully");
+          refetch();
         }
       });
   };
@@ -35,20 +39,19 @@ const ManageBuyer = () => {
     setDeleteProduct(null);
   };
 
-
-  const handleManageBuyerSeller = (user)=>{
-    fetch(`http://localhost:8000/users/${user._id}`, {
-        method: 'DELETE'
+  const handleManageBuyerSeller = (user) => {
+    fetch(`https://car-some-server.vercel.app/users/${user._id}`, {
+      method: "DELETE",
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        if(data.deletedCount > 0){
-            refetch()
-            toast.success("Your  order deleted successfully")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success("Your  order deleted successfully");
         }
-    })
-  }
+      });
+  };
 
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -90,15 +93,15 @@ const ManageBuyer = () => {
                   </td>
 
                   <td>
-                    { user?.type !== "admin" &&
-                        <label
+                    {user?.type !== "admin" && (
+                      <label
                         onClick={() => setDeleteProduct(user)}
-                      htmlFor="confirmation-modal"
-                      className="bg-red-400 btn  btn-sm"
-                    >
-                      Delete
-                    </label>
-                    }
+                        htmlFor="confirmation-modal"
+                        className="bg-red-400 btn  btn-sm"
+                      >
+                        Delete
+                      </label>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -106,17 +109,16 @@ const ManageBuyer = () => {
           </table>
         </div>
         {deleteProduct && (
-        <ConfirmationModale
-        successButtonName='DELETE'
-          successAction={handleManageBuyerSeller}
-          modalData={deleteProduct}
-          closeModal={closeModal}
-          title={`Are you sure you wanna delete? `}
-          message={`If you delete ${deleteProduct.name}.  It cann't be undone`}
-        />
-      )}
+          <ConfirmationModale
+            successButtonName="DELETE"
+            successAction={handleManageBuyerSeller}
+            modalData={deleteProduct}
+            closeModal={closeModal}
+            title={`Are you sure you wanna delete? `}
+            message={`If you delete ${deleteProduct.name}.  It cann't be undone`}
+          />
+        )}
       </div>
-
     </div>
   );
 };

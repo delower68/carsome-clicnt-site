@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -6,19 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useToken from "../../../hooks/useToken";
 
-
-
 const SignUp = () => {
-  const { createUser, updateUser,signInWithGoogle } = useContext(AuthContext);
+  const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
-    const navigate = useNavigate();
-    const [createdUserEmail, setCreateUserEmail] = useState('')
+  const navigate = useNavigate();
+  const [createdUserEmail, setCreateUserEmail] = useState("");
 
-    const [token ]= useToken(createdUserEmail);
+  const [token] = useToken(createdUserEmail);
 
-    if(token){
-        navigate('/');
-    }
+  if (token) {
+    navigate("/");
+  }
 
   const {
     register,
@@ -26,67 +23,63 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-
   const handleSignUp = (data) => {
-    setSignUPError('');
-        createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                toast('User Created Successfully.')
-                const userInfo = {
-                    displayName: data.name
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        saveUser(data.name , data.email, data.type)
-                     })
-                    .catch(err => console.log(err));
-            })
-            .catch(error => {
-                console.log(error)
-                setSignUPError(error.message)
-            });
-
+    setSignUPError("");
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast("User Created Successfully.");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            saveUser(data.name, data.email, data.type);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUPError(error.message);
+      });
   };
 
-  const saveUser = (name, email, type)=>{
-    const user = {name , email, type};
-    fetch('http://localhost:8000/users', {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(user)
+  const saveUser = (name, email, type) => {
+    const user = { name, email, type };
+    fetch("https://car-some-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log( 'save user ',data);
-        getUserToken(email)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("save user ", data);
+        getUserToken(email);
         // setCreateUserEmail(email);
-        
-    })
-}
-  const getUserToken = email =>{
-    fetch(`http://localhost:8000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.accessToken) {
-            localStorage.setItem("accessToken", data.accessToken);
-            console.log(data.accessToken)
-            navigate('/');
-          }
-        });
-  }
+      });
+  };
+  const getUserToken = (email) => {
+    fetch(`https://car-some-server.vercel.app/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          console.log(data.accessToken);
+          navigate("/");
+        }
+      });
+  };
 
   // google login
   const handleGoogleSignIn = () => {
     signInWithGoogle().then((result) => {
       console.log(result.user);
-      navigate('/');
+      navigate("/");
     });
   };
-
 
   return (
     <div>
@@ -117,7 +110,7 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300  bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
                 />
-                {errors.email && <p role="alert">{errors.email?.message}</p> }
+                {errors.email && <p role="alert">{errors.email?.message}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
@@ -128,7 +121,7 @@ const SignUp = () => {
                   type="email"
                   name="email"
                   id="email"
-                  {...register('email', {required: "Email is required"})}
+                  {...register("email", { required: "Email is required" })}
                   placeholder="Enter Your Email Here"
                   className="w-full px-3 py-2 border rounded-md border-gray-300  bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
@@ -139,7 +132,7 @@ const SignUp = () => {
                   <span className="label-text">Role</span>
                 </label>
                 <select
-                  {...register('type', {required: "Type is required"})}
+                  {...register("type", { required: "Type is required" })}
                   className="select select-bordered w-full   border rounded-md border-gray-300  bg-gray-200 text-gray-900"
                 >
                   <option value="Buyer">Buyer</option>
@@ -158,12 +151,18 @@ const SignUp = () => {
                   id="password"
                   required
                   placeholder="*******"
-                  {...register('password', {required: "Password is required",
-                    minLength:{value: 6, message: 'Password must be 6 characters or longers'}
-                })}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be 6 characters or longers",
+                    },
+                  })}
                   className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:outline-green-500 text-gray-900"
                 />
-                {errors.password && <p role="alert">{errors.password?.message}</p> }
+                {errors.password && (
+                  <p role="alert">{errors.password?.message}</p>
+                )}
               </div>
             </div>
             <div className="space-y-2">
@@ -173,7 +172,7 @@ const SignUp = () => {
                 type="submit"
               />
             </div>
-            {signUpError && <p className='text-red-600'>{signUpError}</p>}
+            {signUpError && <p className="text-red-600">{signUpError}</p>}
           </form>
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

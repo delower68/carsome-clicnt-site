@@ -4,62 +4,51 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const BookingModal = ({ carinfo, refetch }) => {
-  const {user}= useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleBookingModal = e =>{
+  const handleBookingModal = (e) => {
     e.preventDefault();
     const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const car_name = form.car_name.value;
-        const resale_price =form.resale_price.value
-        const mobile = form.mobile.value;
-        const location = form.location.value;
-        // console.log(name, email,resale_price,  car_name, mobile, location);
+    const name = form.name.value;
+    const email = form.email.value;
+    const car_name = form.car_name.value;
+    const resale_price = form.resale_price.value;
+    const mobile = form.mobile.value;
+    const location = form.location.value;
+    // console.log(name, email,resale_price,  car_name, mobile, location);
 
+    const booking = {
+      buyerName: name,
+      email,
+      car_name,
+      resale_price,
+      mobile,
+      location,
+    };
+    // console.log(booking);
 
-
-
-        const booking = {
-          buyerName: name ,
-          email,
-          car_name,
-          resale_price, mobile,
-          location
+    fetch("https://car-some-server.vercel.app/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          // setTreatment(null);
+          toast.success("Booking confirmed");
+          form.reset();
+          refetch();
+          navigate("/dashboard");
+        } else {
+          toast.error(data.message);
         }
-        // console.log(booking);
-
-        fetch('http://localhost:8000/bookings', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(booking)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.acknowledged){
-                // setTreatment(null);
-                toast.success("Booking confirmed");
-                form.reset();
-                refetch();
-                navigate('/dashboard')
-            }
-            else{
-                toast.error(data.message)
-            }
-                
-        })
-
-
-
-
-
-
-  }
-
+      });
+  };
 
   return (
     <>
@@ -73,10 +62,12 @@ const BookingModal = ({ carinfo, refetch }) => {
             ✕
           </label>
           <form
-          onSubmit={handleBookingModal}
-          className="grid grid-cols-1 gap-3 mt-10">
-
-          <h3 name="car_name" className="text-lg font-bold">{carinfo?.car_name}</h3>
+            onSubmit={handleBookingModal}
+            className="grid grid-cols-1 gap-3 mt-10"
+          >
+            <h3 name="car_name" className="text-lg font-bold">
+              {carinfo?.car_name}
+            </h3>
             <input
               disabled
               defaultValue={user?.displayName}

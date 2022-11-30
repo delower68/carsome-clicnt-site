@@ -6,7 +6,7 @@ import Spinner from "../Spinner/Spinner";
 import ShowCars from "./ShowCars";
 
 const AllCars = () => {
-  const [carInfo, setCarinfo]= useState(null);
+  const [carInfo, setCarinfo] = useState(null);
 
   const {
     data: cars = [],
@@ -15,27 +15,39 @@ const AllCars = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:8000/products");
+      const res = await fetch("https://car-some-server.vercel.app/products");
       const data = res.json();
       return data;
     },
   });
-  if(isLoading){
-    return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
     <div className=" justify-center flex flex-col lg:flex-row-reverse ">
-        <div className="">
+      <div className="">
         <ul className="m-3 ">
           <li>
-            <Link to='/allMicrobus'><button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">Microbus</button></Link>
+            <Link to="/allMicrobus">
+              <button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">
+                Microbus
+              </button>
+            </Link>
           </li>
           <li>
-            <Link to='/luxuryCar'><button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">Luxury car</button></Link>
+            <Link to="/luxuryCar">
+              <button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">
+                Luxury car
+              </button>
+            </Link>
           </li>
           <li>
-            <Link to='/electricCar'><button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">Electric car</button></Link>
+            <Link to="/electricCar">
+              <button className="btn mt-4 w-full  rounded dark:bg-gray-800 dark:text-gray-50">
+                Electric car
+              </button>
+            </Link>
           </li>
         </ul>
       </div>
@@ -44,12 +56,7 @@ const AllCars = () => {
           <ShowCars key={car._id} car={car} setCarinfo={setCarinfo}></ShowCars>
         ))}
       </div>
-       { carInfo &&
-        <BookingModal
-          carinfo={carInfo}
-          refetch={refetch}
-        />
-        }
+      {carInfo && <BookingModal carinfo={carInfo} refetch={refetch} />}
     </div>
   );
 };

@@ -29,19 +29,35 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allCars",
-        element: <PrivateRoute><AllCars /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllCars />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allMicrobus",
-        element: <PrivateRoute><MicrobusCategorory /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MicrobusCategorory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/luxuryCar",
-        element: <PrivateRoute><LuxuryCarCategory /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <LuxuryCarCategory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/electricCar",
-        element: <PrivateRoute><ElectricCarCategory /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ElectricCarCategory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -58,32 +74,37 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashboard',
-    element:<PrivateRoute> <DashBoardLayout/></PrivateRoute>,
-    errorElement: <ErrorPage/> ,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashBoardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: '/dashboard',
-        element: <MyBookings/>
+        path: "/dashboard",
+        element: <MyBookings />,
       },
       {
-        path: '/dashboard/manageBuyerSeller',
-        element:<ManageBuyer/>
+        path: "/dashboard/manageBuyerSeller",
+        element: <ManageBuyer />,
       },
       {
-        path: '/dashboard/myProducts',
-        element: <MyProducts/>
+        path: "/dashboard/myProducts",
+        element: <MyProducts />,
       },
       {
-        path: '/dashboard/addProduct',
-        element: <AddProduct/>
+        path: "/dashboard/addProduct",
+        element: <AddProduct />,
       },
       {
-        path: '/dashboard/payment/:id',
-        element: <Payment/>,
-        loader: ({params})=> fetch(`http://localhost:8000/bookings/${params.id}`)
+        path: "/dashboard/payment/:id",
+        element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`https://car-some-server.vercel.app/bookings/${params.id}`),
       },
-    ]
-
-  }
+    ],
+  },
 ]);

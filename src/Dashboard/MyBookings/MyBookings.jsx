@@ -10,14 +10,18 @@ const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [deleteProduct, setDeleteProduct] = useState(null);
 
-  const url = `http://localhost:8000/bookings?email=${user?.email}`;
-  const { data: bookings = [],refetch, isLoading } = useQuery({
+  const url = `https://car-some-server.vercel.app/bookings?email=${user?.email}`;
+  const {
+    data: bookings = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
-          authorization: `bearer ${localStorage.getItem('accessToken')}`
-        }
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
       });
       const data = await res.json();
       return data;
@@ -28,22 +32,19 @@ const MyBookings = () => {
     setDeleteProduct(null);
   };
 
-  const handleDelete = product =>{
-    fetch(`http://localhost:8000/bookings/${product._id}`,{
-        method: 'DELETE',
-        headers: {
-
-        }
+  const handleDelete = (product) => {
+    fetch(`https://car-some-server.vercel.app/bookings/${product._id}`, {
+      method: "DELETE",
+      headers: {},
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.deletedCount > 0){
-            refetch()
-            toast.success(`Your ${product?.car_name} order deleted successfully`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Your ${product?.car_name} order deleted successfully`);
         }
-    })
-
-  }
+      });
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -87,16 +88,15 @@ const MyBookings = () => {
                     )}
                   </td>
                   <td>
-                    {
-                      booking?.resale_price && !booking.paid && 
+                    {booking?.resale_price && !booking.paid && (
                       <label
-                      onClick={() => setDeleteProduct(booking)}
-                      htmlFor="confirmation-modal"
-                      className="bg-red-400 btn  btn-sm"
-                    >
-                      Delete
-                    </label>
-                    }
+                        onClick={() => setDeleteProduct(booking)}
+                        htmlFor="confirmation-modal"
+                        className="bg-red-400 btn  btn-sm"
+                      >
+                        Delete
+                      </label>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -105,7 +105,7 @@ const MyBookings = () => {
       </div>
       {deleteProduct && (
         <ConfirmationModale
-        successButtonName='DELETE'
+          successButtonName="DELETE"
           successAction={handleDelete}
           modalData={deleteProduct}
           closeModal={closeModal}
