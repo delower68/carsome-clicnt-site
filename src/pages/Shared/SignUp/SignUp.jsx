@@ -83,8 +83,7 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle().then((result) => {
       console.log(result.user);
-    //   setAuthToken(result.user)
-    //   navigate(from, { replace: true });
+      navigate('/');
     });
   };
 

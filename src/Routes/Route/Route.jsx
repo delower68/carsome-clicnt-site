@@ -8,7 +8,6 @@ import ErrorPage from "../../ErrorPage/ErrorPage";
 import DashBoardLayout from "../../Layouts/DashBoardLayout";
 import Main from "../../Layouts/Main";
 import AllCars from "../../pages/AllCars/AllCars";
-import Categories from "../../pages/Home/Categories/Categories";
 import ElectricCarCategory from "../../pages/Home/ElectricCarCategory/ElectricCarCategory";
 import Home from "../../pages/Home/Home/Home";
 import LuxuryCarCategory from "../../pages/Home/LuxuryCarCategory/LuxuryCarCategory";
@@ -16,7 +15,6 @@ import MicrobusCategorory from "../../pages/Home/MicrobusCategorory/MicrobusCate
 import Blogs from "../../pages/Shared/Blogs/Blogs";
 import Login from "../../pages/Shared/Login/Login";
 import SignUp from "../../pages/Shared/SignUp/SignUp";
-import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([

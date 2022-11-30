@@ -7,7 +7,7 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 import Spinner from "../pages/Spinner/Spinner";
 
 const DashBoardLayout = () => {
-  
+
   const url = "http://localhost:8000/users";
   const { data: users = [],refetch, isLoading } = useQuery({
     queryKey: ["users"],
@@ -42,7 +42,7 @@ const DashBoardLayout = () => {
             className="drawer-overlay rounded-xl"
           ></label>
           <ul className="menu rounded-xl  p-4  w-80 mt-8 text-base-content">
-            {users?.type === "Buyer" && (
+            {users?.type !== "Buyer" && (
               <li>
                 <Link to="/dashboard" className="mb-2">
                   My Bookings
@@ -50,7 +50,7 @@ const DashBoardLayout = () => {
               </li>
             )}
 
-            { users?.type === 'Seller' &&
+            { users?.type !== 'Seller' &&
               <div>
             <li>
               <Link className="mb-2">My Buyers</Link>

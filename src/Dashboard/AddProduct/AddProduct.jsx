@@ -59,7 +59,6 @@ const handleAddProduct = data =>{
                 })
                 .then(res => res.json())
                 .then(result =>{
-                    console.log(result);
                     toast.success(`${data.car_name} is added successfully`);
                     
                 })
